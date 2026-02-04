@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerador inteligente de decks para Clash Royale. Crie decks estratégicos personalizados, receba dicas por arena e analise seus decks.">
+    <meta name="keywords" content="clash royale, deck, gerador, estratégia, arena, cartas, batalha">
+    <meta name="author" content="Deck Royale">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Deck Royale - Gerador Inteligente de Decks">
+    <meta property="og:description" content="Crie decks estratégicos personalizados para Clash Royale com inteligência artificial">
+    <meta property="og:image" content="./images/og-image.png">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deck Royale - Gerador Inteligente de Decks">
+    <meta name="twitter:description" content="Crie decks estratégicos personalizados para Clash Royale">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Deck Royale">
+    
+    <title>Deck Royale - Gerador Inteligente de Decks</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Deck Royale</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn active" data-section="builder">
+                    <i class="fas fa-hammer"></i> Montar Deck
+                </button>
+                <button class="nav-btn" data-section="tips">
+                    <i class="fas fa-lightbulb"></i> Dicas por Arena
+                </button>
+                <button class="nav-btn" data-section="meta">
+                    <i class="fas fa-fire"></i> Metas Atuais
+                </button>
+                <button class="nav-btn" data-section="trainer">
+                    <i class="fas fa-graduation-cap"></i> Treinador de Erros
+                </button>
+                <button class="nav-btn" data-section="profile">
+                    <i class="fas fa-user"></i> Perfil
+                </button>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">
+                <span class="glow">Deck Royale</span>
+            </h1>
+            <p class="hero-subtitle">Gerador Inteligente de Decks para Clash Royale</p>
+            <p class="hero-description">Crie decks estratégicos personalizados para sua arena e estilo de jogo!</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Deck Builder Section -->
+            <section id="builder" class="content-section active">
+                <div class="section-header">
+                    <h2><i class="fas fa-hammer"></i> Construtor de Deck</h2>
+                    <p>Monte seu deck perfeito em 3 passos simples</p>
+                </div>
+
+                <div class="builder-steps">
+                    <!-- Step 1: Arena Selection -->
+                    <div class="step" id="step-arena">
+                        <div class="step-header">
+                            <span class="step-number">1</span>
+                            <h3>Escolha sua Arena</h3>
+                        </div>
+                        <div class="arena-grid" id="arenaGrid">
+                            <!-- Arenas will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Play Style -->
+                    <div class="step" id="step-style">
+                        <div class="step-header">
+                            <span class="step-number">2</span>
+                            <h3>Selecione seu Estilo de Jogo (Opcional)</h3>
+                        </div>
+                        <div class="style-grid">
+                            <button class="style-btn" data-style="defensive">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Defensivo</span>
+                            </button>
+                            <button class="style-btn" data-style="aggressive">
+                                <i class="fas fa-bolt"></i>
+                                <span>Agressivo</span>
+                            </button>
+                            <button class="style-btn" data-style="control">
+                                <i class="fas fa-chess"></i>
+                                <span>Controle</span>
+                            </button>
+                            <button class="style-btn" data-style="ranged">
+                                <i class="fas fa-crosshairs"></i>
+                                <span>Longo Alcance</span>
+                            </button>
+                            <button class="style-btn" data-style="fast">
+                                <i class="fas fa-running"></i>
+                                <span>Ataque Rápido</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Favorite Cards -->
+                    <div class="step" id="step-cards">
+                        <div class="step-header">
+                            <span class="step-number">3</span>
+                            <h3>Cartas Favoritas (Opcional)</h3>
+                            <p class="step-description">Selecione até 4 cartas que você gosta de usar</p>
+                        </div>
+                        <div class="cards-filter">
+                            <button class="filter-btn active" data-filter="all">Todas</button>
+                            <button class="filter-btn" data-filter="troop">Tropas</button>
+                            <button class="filter-btn" data-filter="building">Construções</button>
+                            <button class="filter-btn" data-filter="spell">Feitiços</button>
+                        </div>
+                        <div class="cards-grid" id="cardsGrid">
+                            <!-- Cards will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Generate Button -->
+                    <div class="generate-section">
+                        <button class="generate-btn" id="generateBtn">
+                            <i class="fas fa-magic"></i>
+                            <span>GERAR MEU DECK</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Deck Result -->
+                <div class="deck-result" id="deckResult" style="display: none;">
+                    <div class="result-header">
+                        <h3><i class="fas fa-crown"></i> Seu Deck Gerado</h3>
+                        <div class="deck-category" id="deckCategory"></div>
+                    </div>
+                    
+                    <div class="deck-cards" id="deckCards">
+                        <!-- Generated deck cards -->
+                    </div>
+                    
+                    <div class="deck-stats">
+                        <div class="stat-box">
+                            <i class="fas fa-tint"></i>
+                            <span>Média de Elixir</span>
+                            <strong id="avgElixir">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="deck-explanation" id="deckExplanation">
+                        <!-- Explanation will be generated -->
+                    </div>
+
+                    <div class="deck-actions">
+                        <button class="action-btn primary" id="generateAnotherBtn">
+                            <i class="fas fa-sync-alt"></i> Gerar Outro Deck
+                        </button>
+                        <button class="action-btn secondary" id="saveDeckBtn">
+                            <i class="fas fa-save"></i> Salvar Deck
+                        </button>
+                        <button class="action-btn secondary" id="shareBtn">
+                            <i class="fas fa-share-alt"></i> Compartilhar
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tips Section -->
+            <section id="tips" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-lightbulb"></i> Dicas por Arena</h2>
+                    <p>Estratégias e conselhos para cada arena</p>
+                </div>
+                <div class="tips-arena-selector">
+                    <select id="tipsArenaSelect" class="arena-select">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="tips-content" id="tipsContent">
+                    <!-- Tips will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Meta Section -->
+            <section id="meta" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-fire"></i> Metas Atuais</h2>
+                    <p>Decks populares e dominantes em cada arena</p>
+                </div>
+                <div class="meta-arena-selector">
+                    <select id="metaArenaSelect" class="arena-select">
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="meta-decks" id="metaDecks">
+                    <!-- Meta decks will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Trainer Section -->
+            <section id="trainer" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-graduation-cap"></i> Treinador de Erros</h2>
+                    <p>Monte seu deck e receba uma análise completa</p>
+                </div>
+                <div class="trainer-container">
+                    <div class="trainer-builder">
+                        <h3>Monte seu Deck (8 cartas)</h3>
+                        <div class="trainer-deck" id="trainerDeck">
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                            <div class="empty-slot">+</div>
+                        </div>
+                        <div class="trainer-cards-grid" id="trainerCardsGrid">
+                            <!-- All cards available for selection -->
+                        </div>
+                    </div>
+                    <button class="analyze-btn" id="analyzeBtn" disabled>
+                        <i class="fas fa-microscope"></i> Analisar Deck
+                    </button>
+                    <div class="analysis-result" id="analysisResult" style="display: none;">
+                        <!-- Analysis will be shown here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-user"></i> Perfil do Jogador</h2>
+                    <p>Seus dados e decks salvos</p>
+                </div>
+                <div class="profile-container">
+                    <div class="profile-info">
+                        <h3>Informações</h3>
+                        <div class="profile-field">
+                            <label>Arena Atual:</label>
+                            <span id="profileArena">Não definida</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Decks Salvos:</label>
+                            <span id="profileDeckCount">0</span>
+                        </div>
+                    </div>
+                    <div class="saved-decks">
+                        <h3>Decks Salvos</h3>
+                        <div id="savedDecksList">
+                            <p class="empty-message">Nenhum deck salvo ainda</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Deck Royale - Gerador Inteligente de Decks</p>
+            <p class="disclaimer">Este site é uma ferramenta independente e não é oficialmente afiliado ao Clash Royale</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/deckGenerator.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
