@@ -343,6 +343,11 @@ const META_DECKS = {
 };
 
 // Export all data
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { ARENAS, CARDS, PLAY_STYLES, DECK_RULES, ARENA_TIPS, META_DECKS };
-}
+// Torna os dados globais para o navegador
+window.ARENAS = ARENAS;
+window.CARDS = CARDS;
+window.PLAY_STYLES = PLAY_STYLES;
+window.DECK_RULES = DECK_RULES;
+window.ARENA_TIPS = ARENA_TIPS;
+window.META_DECKS = META_DECKS;
+
