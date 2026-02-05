@@ -113,25 +113,48 @@ class UIManager {
     }
 
     // Setup event listeners
-    setupEventListeners() {
-        // Style buttons
-        document.querySelectorAll('.style-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('selected'));
-                btn.classList.add('selected');
-                this.selectedStyle = btn.dataset.style;
-            });
-        });
+   setupEventListeners() {
 
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                this.currentFilter = btn.dataset.filter;
-                this.renderAvailableCards();
-            });
+    const safeAdd = (id, event, handler) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener(event, handler);
+    };
+
+    // Style buttons
+    document.querySelectorAll('.style-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            this.selectedStyle = btn.dataset.style;
         });
+    });
+
+    // Filters
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            this.currentFilter = btn.dataset.filter;
+            this.renderAvailableCards();
+        });
+    });
+
+    safeAdd('generateBtn', 'click', () => this.generateDeck());
+    safeAdd('generateAnotherBtn', 'click', () => this.generateDeck());
+    safeAdd('saveDeckBtn', 'click', () => this.saveDeck());
+    safeAdd('shareBtn', 'click', () => this.shareDeck());
+    safeAdd('analyzeBtn', 'click', () => this.analyzeDeck());
+
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    if (mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+            document.querySelector('.nav').classList.toggle('active');
+        });
+    }
+
+    safeAdd('tipsArenaSelect', 'change', (e) => this.showArenaTips(parseInt(e.target.value)));
+    safeAdd('metaArenaSelect', 'change', (e) => this.showMetaDecks(parseInt(e.target.value)));
+}
 
         // Generate deck button
         document.getElementById('generateBtn').addEventListener('click', () => {
