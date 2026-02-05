@@ -49,7 +49,7 @@ class UIManager {
         });
         document.querySelector(`[data-arena-id="${arena.id}"]`).classList.add('selected');
 
-        // Update available cards
+        // Update available CARDS
         this.renderAvailableCards();
     }
 
@@ -264,7 +264,7 @@ class UIManager {
         deckCards.innerHTML = '';
         deckExplanation.innerHTML = '';
 
-        // Show cards
+        // Show CARDS
         deck.cards.forEach(card => {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'deck-card';
