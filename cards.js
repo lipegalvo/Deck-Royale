@@ -16,3 +16,4 @@ const todasCartas = [
   { nome: "Balão", tipo: "win", elixir: 5 },
   { nome: "Príncipe", tipo: "dano", elixir: 5 }
 ];
+console.log("CARDS LOADED", CARDS.length);
